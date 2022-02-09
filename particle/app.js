@@ -71,7 +71,7 @@ class Particle {
         //0~5 랜덤 숫자 생성
         // this.x = Math.random() * canvas.width;
         // this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 10 + 1;
+        this.size = Math.random() * 200 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
         this.color = `hsl(${hue},100%,50%)`;
@@ -89,8 +89,10 @@ class Particle {
         ctx.lineWidth = 0.1;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    
         ctx.fill()
         //    ctx.stroke();
+        
     }
 }
 
@@ -109,6 +111,7 @@ function handleParticles() {
             if(distance < particle_line){
                 ctx.beginPath();
                 ctx.strokeStyle = particleArray[i].color;
+                // ctx.strokeStyle = 'white';
                 ctx.moveTo(particleArray[i].x,particleArray[i].y);
                 ctx.lineTo(particleArray[j].x,particleArray[j].y);
                 ctx.stroke();
