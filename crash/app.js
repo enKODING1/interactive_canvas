@@ -41,7 +41,7 @@ class App{
         //shape
 
         this.shape = new Array();
-        this.shape_count = 3;
+        this.shape_count = Math.floor(Math.random() * 50);
         
         for(let i = 0; i < this.shape_count ;i++){
             let x = Math.floor(Math.random() * window.innerWidth);
