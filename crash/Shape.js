@@ -18,22 +18,22 @@ export class Shape {
          this.x += this.sx;
         this.y += this.sy;
 
-        this.dx = this.x + Math.cos(this.angle * (Math.PI/180))*this.radius;
-        this.dy = this.y + Math.sin(this.angle * (Math.PI/180))*this.radius;
+        // this.dx = this.x + Math.cos(this.angle * (Math.PI/180))*this.radius;
+        // this.dy = this.y + Math.sin(this.angle * (Math.PI/180))*this.radius;
         
-        if(this.angle > 360){
-            this.angle = 0;
-        }
+        // if(this.angle > 360){
+        //     this.angle = 0;
+        // }
 
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        //ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.arc(this.dx, this.dy, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        //ctx.arc(this.dx, this.dy, this.radius, 0, Math.PI * 2);
         ctx.fill();
         this.crash();
         this.crashBar();
 
-        this.angle += 5;
+        //this.angle += 5;
     }
     //사각형으로 그리는 옵션
     drawRect(ctx) {
