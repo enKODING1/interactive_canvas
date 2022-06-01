@@ -2,4 +2,9 @@
 
 # 캔버스를 이용한 애니메이션
 
-- [particle page] (https://enkoding.netlify.app/particle)
+- [ball page] (https://enkoding.netlify.app/ball)
+
+- [crash animation page] (https://enkoding.netlify.app/crash)
+
+- [particle animation page] (https://enkoding.netlify.app/particle)
+

@@ -29,9 +29,9 @@ class App{
               }
 
               if(e.keyCode == 37){
-                this.bar_range -=10;
+                this.bar_range -=20;
                }else if(e.keyCode == 39){
-                this.bar_range += 10
+                this.bar_range += 20
                }
 
                this.bar.update(this.bar_range)
