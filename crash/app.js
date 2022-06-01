@@ -57,7 +57,7 @@ class App {
             let x = Math.floor(Math.random() * window.innerWidth);
             let y = Math.floor(Math.random() * window.innerHeight);
             let radius = Math.floor((Math.random() * 30) + 15);
-            let speed = 10;
+            let speed = Math.floor(Math.random() * 10)+2;
             let r = Math.floor(Math.random() * 255);
             let g = Math.floor(Math.random() * 255);
             let b = Math.floor(Math.random() * 255);

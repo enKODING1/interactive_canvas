@@ -9,31 +9,46 @@ export class Shape {
         this.color = color;
         this.width = Math.floor((Math.random() * 100) + 20);
         this.height = Math.floor((Math.random() * 100) + 20);
+        this.angle = 0;
+        this.dx =0;
+        this.dy =0;
     }
     //원으로 그리는 옵션
     draw(ctx) {
-        this.x += this.sx;
+         this.x += this.sx;
         this.y += this.sy;
+
+        this.dx = this.x + Math.cos(this.angle * (Math.PI/180))*this.radius;
+        this.dy = this.y + Math.sin(this.angle * (Math.PI/180))*this.radius;
+        
+        if(this.angle > 360){
+            this.angle = 0;
+        }
 
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        //ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.dx, this.dy, this.radius, 0, Math.PI * 2);
         ctx.fill();
         this.crash();
         this.crashBar();
+
+        this.angle += 5;
     }
     //사각형으로 그리는 옵션
     drawRect(ctx) {
-        //    this.x += this.sx;
-        //    this.y += this.sy; 
-
+           this.x += this.sx;
+           this.y += this.sy; 
+       
+        
 
         ctx.fillStyle = this.color;
         ctx.beginPath();
-        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.rect(this.dx, this.dy, this.width, this.height);
         ctx.fill();
         this.crash();
         this.crashBar();
+     
 
     }
 
