@@ -39,8 +39,8 @@ export class Shape{
        let minX = this.radius;
        let minY = this.radius;
 
-       let maxX = window.innerWidth + this.radius;
-       let maxY = window.innerHeight + this.radius;
+       let maxX = window.innerWidth - this.radius;
+       let maxY = window.innerHeight - this.radius;
 
        if(this.x > maxX || this.x < minX){
            this.sx = -this.sx;
