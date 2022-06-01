@@ -8,3 +8,4 @@
 
 - [particle animation page] (https://enkoding.netlify.app/particle)
 
+- [gravity animation page] (https://enkoding.netlify.app/gravity)
