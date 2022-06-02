@@ -10,7 +10,7 @@ class App{
 
         window.requestAnimationFrame(this.animate.bind(this));
         this.ball =new Array();
-        let ball_count  = 10;
+        let ball_count  = Math.floor(Math.random()*5)+1;
         
         for(let i = 0; i < ball_count;i++){
             let r = Math.floor(Math.random() * 255);

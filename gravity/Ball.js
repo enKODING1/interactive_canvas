@@ -1,9 +1,10 @@
 export class Ball {
     constructor(x, y, radius, speed,color) {
-        this.x = Math.floor(Math.random() * window.innerWidth + radius );
-        this.y = Math.floor(Math.random() * window.innerHeight +radius);
-        this.dx = speed;
-        this.dy = speed;
+        this.x = Math.floor(Math.random() * window.innerWidth/2 + radius );
+        this.y = Math.floor(Math.random() * window.innerHeight/2 +radius);
+        let random = Math.floor(Math.random() * 2) + 1;
+        this.dx = random == 1? speed : -speed;
+        this.dy = random == 1? speed : -speed;
         this.weight = 0;
         this.directionX = 0;
         this.radius = Math.floor(Math.random() * radius + 20);
