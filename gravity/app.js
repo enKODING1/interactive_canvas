@@ -1,3 +1,5 @@
+import {Ball} from './Ball.js';
+
 class App{
     constructor(){
         this.canvas = document.getElementById('canvas');
@@ -5,72 +7,34 @@ class App{
 
         window.addEventListener('resize',this.resize.bind(this));
         this.resize();
-        
-        window.requestAnimationFrame(this.animate.bind(this));
-        this.ball = new Ball(100,100,20,10);
-    }
 
+        window.requestAnimationFrame(this.animate.bind(this));
+        this.ball =new Array();
+        let ball_count  = 10;
+        
+        for(let i = 0; i < ball_count;i++){
+            let r = Math.floor(Math.random() * 255);
+            let g = Math.floor(Math.random() * 255);
+            let b = Math.floor(Math.random() * 255);
+            let color = `rgba(${r},${g},${b},0.4)`;
+            this.ball.push(new Ball(100,100,50,10,color))
+        }
+    }
     resize(){
         this.canvas.width = window.innerWidth;
-        this.canvas.hidden = window.innerHeight;
-    
+        this.canvas.height = window.innerHeight;
+        
     }
-
     animate(){
         this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
-        window.requestAnimationFrame(this.animate.bind(this));
-        this.ball.draw(this.ctx);
-    }
-   
-}
-
-
-class Ball{
-    constructor(x,y,radius,speed){
-        this.x = x;
-        this.y = y;
-
-        this.dx = speed;
-        this.dy = speed;
-
-        this.radius = radius;
-        this.speed = speed;
-    }
-
-    draw(ctx){
-        this.x += this.dx;
-        this.y += this.dy;
-
-        ctx.fillStyle= 'red';
-        ctx.beginPath();
-        ctx.arc(this.x,this.y,this.radius,0,Math.PI *2);
-        ctx.fill();
+        window.requestAnimationFrame(this.animate.bind(this))
         
-        this.crash();
-
-    }
-
-    crash() {
-        let minX = this.radius;
-        let minY = this.radius;
-
-        let maxX = window.innerWidth - this.radius;
-        let maxY = window.innerHeight - this.radius;
-
-        if (this.x > maxX || this.x < minX) {
-            this.dx *= -1;
-            this.x += this.dx;
-        } else if (this.y > maxY || this.y < minY) {
-            this.dy *= -1;
-            this.y += this.dy;
+        for(let i = 0; i < this.ball.length ;i++){
+            this.ball[i].draw(this.ctx,window.innerWidth,window.innerHeight);
         }
-
-
     }
 }
-
 
 window.onload = ()=>{
     new App();
-    
 }
