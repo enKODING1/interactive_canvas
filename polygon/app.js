@@ -15,10 +15,12 @@ class App {
 
         this.pointerDown = false;
         this.moveX = 0;
-        window.addEventListener('pointerdown', this.onDown.bind(this));
-        window.addEventListener('pointermove', this.onMove.bind(this));
-        window.addEventListener('pointerup', this.onUp.bind(this));
-
+        // window.addEventListener('pointerdown', this.onDown.bind(this));
+        // window.addEventListener('pointermove', this.onMove.bind(this));
+        // window.addEventListener('pointerup', this.onUp.bind(this));
+        window.addEventListener('mousedown', this.onDown.bind(this));
+        window.addEventListener('mousemove', this.onMove.bind(this));
+        window.addEventListener('mouseup', this.onUp.bind(this));
   
         
 
