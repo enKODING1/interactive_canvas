@@ -54,9 +54,10 @@ canvas.addEventListener('click', (event) => {
     }
 });
 
-canvas.addEventListener('mousemove', (event) => {
+canvas.addEventListener('pointermove', (event) => {
     mouse.x = event.x;
     mouse.y = event.y;
+    
     // ctx.clearRect(0,0,canvas.width,canvas.height);
     for (let i = 0; i < particle_num; i++) {
         particleArray.push(new Particle());
