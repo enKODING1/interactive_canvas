@@ -13,6 +13,8 @@ class App{
         this.contents = document.querySelectorAll('.item');
         this.mouseDown = false;
         this.moveX = 0;
+        this.backupX = 0;
+      
         
         window.addEventListener('pointerdown',this.onDown.bind(this));
 
@@ -39,16 +41,19 @@ class App{
 
     onMove(e){
         if(this.mouseDown == true){
-
-            this.moveX = e.clientX - this.offsetX;
-        
+            e.preventDefault();
+            this.moveX = e.clientX - this.offsetX + this.backupX;
+            // this.offsetX = e.moveX;
+            console.log(this.moveX);
+            
+         
         }
-        console.log(this.moveX);
-        e.preventDefault();
+
     }
 
     onUp(e){
         this.mouseDown = false;
+        this.backupX = this.moveX;
     }
 }
 
