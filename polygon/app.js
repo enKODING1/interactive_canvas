@@ -33,7 +33,8 @@ class App {
 
     onMove(e) {
         if (this.pointerDown === true) {
-
+            e.preventDefault();
+ 
            this.moveX = e.clientX - this.offsetX; //현재 마우스를 움직이는 첫 지점을 0으로 만드는 코드
            this.offsetX = e.clientX;
     

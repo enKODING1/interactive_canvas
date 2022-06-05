@@ -9,6 +9,18 @@ export class Polygon {
         this.angle = 0;
         this.PI2 = Math.PI * 2;
         this.rotate = 0;
+        this.COLOR = [
+            '#41F2A6',
+            '#FCE444',
+            '#49E649',
+            '#FF5041',
+            '#D3F5A9',
+            '#F5A9D8',
+            '#F7F6DF',
+            '#C4FFCA',
+            '#9DF6D0',
+            '#FA9C64'
+        ]
     
     
     }
@@ -34,7 +46,7 @@ export class Polygon {
             ctx.save();
 
             
-            ctx.fillStyle =  'blue';
+            ctx.fillStyle =  this.COLOR[i];
             
             ctx.translate(x,y);
             ctx.rotate(((360 / this.sides) * i + 45) * Math.PI / 180);
