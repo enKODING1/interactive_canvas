@@ -10,6 +10,7 @@ class App{
             this.item.className = 'item';   
             this.content.appendChild(this.item);
         }
+        this.contents = document.querySelectorAll('.item');
         this.mouseDown = false;
         this.moveX = 0;
         
@@ -19,6 +20,15 @@ class App{
 
         window.addEventListener('pointerup',this.onUp.bind(this));
         
+        window.requestAnimationFrame(this.update.bind(this));
+    }
+
+    update(){
+        window.requestAnimationFrame(this.update.bind(this));
+
+        for(let i =0 ; i < this.contents.length ; i++){
+            this.contents[i].style.transform = `translate(${this.moveX}px)`;
+        }
     }
 
     onDown(e){
@@ -31,8 +41,10 @@ class App{
         if(this.mouseDown == true){
 
             this.moveX = e.clientX - this.offsetX;
-            this.offsetX = e.clientX;
+        
         }
+        console.log(this.moveX);
+        e.preventDefault();
     }
 
     onUp(e){
