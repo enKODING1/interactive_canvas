@@ -8,11 +8,14 @@ class App {
         this.ctx = this.canvas.getContext('2d');
 
         window.addEventListener('resize', this.resize.bind(this));
+        this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
         this.resize();
+
+      
 
         window.requestAnimationFrame(this.animate.bind(this));
         this.ball = new Array();
-        let ball_count = 80;
+        let ball_count = 100;
 
         for (let i = 0; i < ball_count; i++) {
             let r = Math.floor(Math.random() * 255);
@@ -25,8 +28,10 @@ class App {
         }
     }
     resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        this.canvas.width = window.innerWidth * this.pixelRatio;
+        this.canvas.height = window.innerHeight * this.pixelRatio;
+        this.ctx.scale(this.pixelRatio,this.pixelRatio);
+
 
     }
     animate() {
