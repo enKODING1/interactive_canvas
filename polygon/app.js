@@ -7,18 +7,19 @@ class App {
         this.ctx = this.canvas.getContext('2d');
 
         window.addEventListener('resize', this.resize.bind(this));
-        this.sides = 3;
+    
         this.resize();
 
         window.requestAnimationFrame(this.animate.bind(this));
 
 
         this.pointerDown = false;
+        this.moveX = 0;
         window.addEventListener('pointerdown', this.onDown.bind(this));
         window.addEventListener('pointermove', this.onMove.bind(this));
         window.addEventListener('pointerup', this.onUp.bind(this));
 
-
+  
         
 
     }
@@ -26,22 +27,22 @@ class App {
 
     onDown(e) {
         this.pointerDown = true;
-        console.log('down')
+        this.moveX = 0;
+        this.offsetX = e.clientX;
     }
 
     onMove(e) {
         if (this.pointerDown === true) {
-            console.log('move')
-            
-            
 
-
+           this.moveX = e.clientX - this.offsetX; //현재 마우스를 움직이는 첫 지점을 0으로 만드는 코드
+           this.offsetX = e.clientX;
+    
         }
     }
 
     onUp(e) {
         this.pointerDown = false;
-        console.log('up')
+    
     }
 
 
@@ -54,14 +55,17 @@ class App {
 
         this.polygon = new Polygon(
             window.innerWidth / 2,
-            window.innerHeight / 2,
-            window.innerHeight / 3,
-            this.sides
+            window.innerHeight + (window.innerHeight/4),
+            window.innerHeight / 1.5,
+            9
         );
     }
     animate() {
         window.requestAnimationFrame(this.animate.bind(this));
-        this.polygon.animate(this.ctx);
+        this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+        this.moveX *= 0.9;
+       
+        this.polygon.animate(this.ctx,this.moveX);
     }
 }
 
