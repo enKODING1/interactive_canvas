@@ -9,7 +9,8 @@ export class Ball {
         this.radius = Math.random() * radius + 1;
         this.speed = speed;
         this.color = color;
-
+        this.ballSize = 0.04;
+        this.sizebackup = this.radius;
 
     }
 
@@ -18,6 +19,14 @@ export class Ball {
 
         this.x += this.dx;
         this.y += this.dy;
+
+
+        if(this.radius > 8){
+            this.ballSize = -0.04;
+        }else if(this.radius<  this.sizebackup){
+            this.ballSize = 0.04;
+        }
+        this.radius += this.ballSize;
 
         ctx.fillStyle = this.color;
         ctx.beginPath();
@@ -35,6 +44,7 @@ export class Ball {
 
         let minX = this.radius;
         let minY = this.radius;
+
 
         let maxX = stageWidth - this.radius;
         let maxY = stageHeight - this.radius;

@@ -18,13 +18,13 @@ class App {
         let ball_count = 100;
 
         for (let i = 0; i < ball_count; i++) {
-            let r = Math.floor(Math.random() * 255);
-            let g = Math.floor(Math.random() * 255);
-            let b = Math.floor(Math.random() * 255);
-            let color = `rgba(${r},${g},${b},0.4)`;
-            let speed = Math.random() * 2 + 0.1;
-            // let color = 'white';
-            this.ball.push(new Ball(100, 100, 5, speed, color))
+            // let r = Math.floor(Math.random() * 255);
+            // let g = Math.floor(Math.random() * 255);
+            // let b = Math.floor(Math.random() * 255);
+            // let color = `rgba(${r},${g},${b},0.8)`;
+            let speed = Math.random() * 1 + 0.1;
+            let color = 'white';
+            this.ball.push(new Ball(100, 100, 3, speed, color))
         }
     }
     resize() {
@@ -48,7 +48,7 @@ class App {
                 let dy = this.ball[i].y - this.ball[j].y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < 80) {
-                    this.ctx.lineWidth = 0.1;
+                    this.ctx.lineWidth = 0.06;
                     this.ctx.strokeStyle = this.ball[i].color;
                     this.ctx.moveTo(this.ball[i].x, this.ball[i].y);
                     this.ctx.lineTo(this.ball[j].x, this.ball[j].y);
