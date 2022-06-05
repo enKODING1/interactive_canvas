@@ -1,5 +1,6 @@
 class App{
     constructor(){
+        document.body.style.overscrollBehaviorY = 'none';
         this.content = document.getElementById('content');
 
         this.itemCount = 4;
