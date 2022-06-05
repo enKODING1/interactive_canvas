@@ -18,12 +18,12 @@ class App {
         let ball_count = 100;
 
         for (let i = 0; i < ball_count; i++) {
-            // let r = Math.floor(Math.random() * 255);
-            // let g = Math.floor(Math.random() * 255);
-            // let b = Math.floor(Math.random() * 255);
-            // let color = `rgba(${r},${g},${b},0.4)`;
+            let r = Math.floor(Math.random() * 255);
+            let g = Math.floor(Math.random() * 255);
+            let b = Math.floor(Math.random() * 255);
+            let color = `rgba(${r},${g},${b},0.4)`;
             let speed = Math.random() * 2 + 0.1;
-            let color = 'white';
+            // let color = 'white';
             this.ball.push(new Ball(100, 100, 5, speed, color))
         }
     }
