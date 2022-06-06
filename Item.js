@@ -49,7 +49,12 @@ export class Item {
     this.transitionX += moveX * 0.08;
     for (let i = 0; i < this.item.length; i++) {
       this.item[i].style.transform = `translateX(${this.transitionX}px)`;
+   
     }
+
+    
+
+  
   }
 
   insertTitle() {
@@ -65,7 +70,8 @@ export class Item {
       let r = Math.floor(Math.random() * 255);
       let g = Math.floor(Math.random() * 255);
       let b = Math.floor(Math.random() * 255);
-      let color = `rgba(${r},${g},${b},0.13)`;
+      let color = `rgba(${r},${g},${b},0.43)`;
+      // let color = `rgb(${r},${g},${b})`;
 
       this.item[i].style.backgroundColor = `${color}`;
     }
