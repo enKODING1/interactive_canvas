@@ -82,10 +82,11 @@ export class Item {
     
     this.item.forEach((e,key)=>{
       e.addEventListener('click',()=>{
+          count = 0;
           for(let i in this.ITEM_LIST){
             if(key == count){
-              location.href = this.ITEM_LIST[i];
-              alert(this.ITEM_LIST[i]);
+             location.href = this.ITEM_LIST[i];
+              
               return 0;
             }else{
               count++;
