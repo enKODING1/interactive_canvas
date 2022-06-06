@@ -47,6 +47,8 @@ body{
     vertical-align: middle;
 }
 
+
+
 .item_title_box{
     margin-top: 7vw;
     width: 100%;
@@ -58,7 +60,6 @@ body{
 
 
 .item_title{
-
     padding-left: 15px;
     padding-right: 15px;
     white-space: normal;

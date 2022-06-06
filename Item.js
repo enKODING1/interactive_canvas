@@ -6,6 +6,7 @@ export class Item {
     this.parent = parent;
     this.count = 0;
     this.transitionX = 0;
+    this.transitionY = 100;
 
     this.ITEM_LIST = ITEM_LIST;
   }
@@ -32,7 +33,6 @@ export class Item {
     this.insertTitle();
     this.setColor();
     this.clickEvent();
-
   }
 
   selectItem() {
@@ -60,15 +60,15 @@ export class Item {
     }
   }
 
-   setColor(){
-     for(let i =0 ;i < this.count ;i++){
-       let r = Math.floor(Math.random() * 255);
-       let g = Math.floor(Math.random() * 255);
-       let b = Math.floor(Math.random() * 255);
-       let color = `rgba(${r},${g},${b},0.13)`;
-       
-       this.item[i].style.backgroundColor = `${color}`;
-      }
+  setColor() {
+    for (let i = 0; i < this.count; i++) {
+      let r = Math.floor(Math.random() * 255);
+      let g = Math.floor(Math.random() * 255);
+      let b = Math.floor(Math.random() * 255);
+      let color = `rgba(${r},${g},${b},0.13)`;
+
+      this.item[i].style.backgroundColor = `${color}`;
+    }
   }
 
   getItemCount() {
@@ -76,24 +76,23 @@ export class Item {
       this.count += 1;
     }
   }
-
-  clickEvent(){
-    let count = 0;
     
-    this.item.forEach((e,key)=>{
-      e.addEventListener('click',()=>{
-          count = 0;
-          for(let i in this.ITEM_LIST){
-            if(key == count){
-             location.href = this.ITEM_LIST[i];
-              
-              return 0;
-            }else{
-              count++;
-            }
+  clickEvent() {
+    let count = 0;
 
+    this.item.forEach((e, key) => {
+      e.addEventListener("click", () => {
+        count = 0;
+        for (let i in this.ITEM_LIST) {
+          if (key == count) {
+           location.href = this.ITEM_LIST[i];
+            
+            return 0;
+          } else {
+            count++;
           }
-      })
-    })
+        }
+      });
+    });
   }
 }
