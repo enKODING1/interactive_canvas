@@ -24,8 +24,12 @@ class App {
             // let color = `rgba(${r},${g},${b},0.8)`;
             let speed = Math.random() * 1 + 0.1;
             let color = 'white';
-            this.ball.push(new Ball(100, 100, 3, speed, color))
+            this.ball.push(new Ball(100, 100, 2, speed, color))
         }
+		
+		this.pointerParticle = new Ball(0,0,20,2,'white');
+		
+		window.addEventListener('pointermove',this.onMove.bind(this));
     }
     resize() {
         this.canvas.width = window.innerWidth * this.pixelRatio;
@@ -40,6 +44,11 @@ class App {
         this.connect();
     }
 
+	onMove(e){
+		 this.pointerParticle.moveMouse(e.x,e.y,this.ctx);
+		console.log(e);
+	}
+	
     connect() {
         for (let i = 0; i < this.ball.length; i++) {
             this.ball[i].draw(this.ctx, window.innerWidth, window.innerHeight);

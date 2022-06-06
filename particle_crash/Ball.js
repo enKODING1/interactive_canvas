@@ -1,12 +1,12 @@
 export class Ball {
     constructor(x, y, radius, speed,color) {
-        this.x = Math.floor(Math.random() * window.innerWidth/2) + x ;
-        this.y = Math.floor(Math.random() * window.innerHeight/3) + y ;
+        this.x = Math.floor(Math.random() * window.innerWidth/2) +x;
+        this.y = Math.floor(Math.random() * window.innerHeight/2) + y ;
         this.direction = Math.floor(Math.random() * 2)+1;
 
-        this.dx = this.direction == 1? speed: -speed;
-        this.dy = speed;
-        this.radius = Math.random() * radius + 1;
+        this.dx = (Math.random() * speed )- speed;
+        this.dy = (Math.random() * speed) -speed;
+        this.radius = Math.random() * radius ;
         this.speed = speed;
         this.color = color;
         this.ballSize = 0.04;
@@ -21,9 +21,9 @@ export class Ball {
         this.y += this.dy;
 
 
-        if(this.radius > 8){
+        if(this.radius > 3){
             this.ballSize = -0.04;
-        }else if(this.radius<  this.sizebackup){
+        }else if(this.radius < 0.10){
             this.ballSize = 0.04;
         }
         this.radius += this.ballSize;
@@ -37,6 +37,14 @@ export class Ball {
 
 
     }
+	
+	moveMouse(x,y,ctx){
+		ctx.fillStyle = this.color;
+		ctx.beginPath();
+		ctx.arc(x,y,this.radius,0,Math.PI * 2,false);
+		ctx.fill();
+		
+	}
 
     crash(stageWidth, stageHeight) {
         // this.weight += 0.5;
