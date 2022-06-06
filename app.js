@@ -1,17 +1,21 @@
+import {Item} from './Item.js';
+
 class App{
     constructor(){
-        document.body.style.overscrollBehaviorY = 'none';
-        this.content = document.getElementById('content');
+        
+        //나중에 지울것 테스트용
+        this.test = document.getElementById('test');
 
+
+
+        this.content = document.getElementById('content');//부모요소
         this.itemCount = 4;
-        
-        
-        for(let i =0 ;i < this.itemCount ; i++){
-            this.item = document.createElement('div');
-            this.item.className = 'item';   
-            this.content.appendChild(this.item);
-        }
-        this.contents = document.querySelectorAll('.item');
+
+
+        this.item = new Item(this.content,this.itemCount);
+        this.item.create();
+    
+    
         this.mouseDown = false;
         this.moveX = 0;
         this.backupX = 0;
@@ -27,11 +31,12 @@ class App{
     }
 
     update(){
+      
         window.requestAnimationFrame(this.update.bind(this));
-
-        for(let i =0 ; i < this.contents.length ; i++){
-            this.contents[i].style.transform = `translate(${this.moveX}px)`;
-        }
+        
+        // this.item.moveAnimate(this.moveX);
+        this.item.moveAnimate(this.moveX,this.test);
+        
     }
 
     onDown(e){
