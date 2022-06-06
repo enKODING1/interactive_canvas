@@ -2,6 +2,12 @@
     padding: 0;
     margin: 0;
 }
+html {
+
+    -ms-content-zooming: none;
+    -ms-touch-action: pan-x pan-y;
+    
+    }
 body{
     padding: 0;
     margin: 0;
