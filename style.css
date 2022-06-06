@@ -5,7 +5,11 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
     
 }
 
@@ -16,8 +20,9 @@ body{
     width: 100%;
     height: 40vh;
 
-    margin-top: 20%;
-    align-items: center;
+  
+    margin-top: 25vh;
+
     overflow: hidden;
     white-space: nowrap;
     z-index: 1;
@@ -25,12 +30,31 @@ body{
 
 .item{
     position: relative;
-    
     z-index: 0;
     display: inline-block;
     width: 25vh;
     height: 90%;
-    border: 3px solid green;
+  
+   
     border-radius: 10px;
     margin-left: 5%;
+    vertical-align: middle;
+}
+
+.item_title_box{
+    margin-top: 7vw;
+    width: 100%;
+    height: 50%;
+    padding-top: 5%;
+
+    
+}
+
+
+.item_title{
+
+    padding-left: 15px;
+    padding-right: 15px;
+    white-space: normal;
+    text-align: center;
 }
