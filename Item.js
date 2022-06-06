@@ -85,6 +85,7 @@ export class Item {
           for(let i in this.ITEM_LIST){
             if(key == count){
               location.href = this.ITEM_LIST[i];
+              alert(this.ITEM_LIST[i]);
               return 0;
             }else{
               count++;
