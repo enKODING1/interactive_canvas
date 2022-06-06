@@ -62,7 +62,7 @@ class App {
 
   update() {
     window.requestAnimationFrame(this.update.bind(this));
-    this.moveX *= 0.97;
+    this.moveX *= 0.9;
     this.item.moveAnimate(this.moveX);
     
 
@@ -98,6 +98,7 @@ class App {
     if (this.mouseDown == true) {
       e.preventDefault();
       this.moveX = e.clientX - this.offsetX;
+      this.offsetX = e.clientX;
     }
 
     
