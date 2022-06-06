@@ -14,3 +14,4 @@
 - [particle crash animation page] (https://enkoding.netlify.app/particle_crash)
 
 
+- [main page] (https://enkoding.netlify.app)
