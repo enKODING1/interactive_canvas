@@ -56,7 +56,7 @@ class App {
             window.innerWidth / 2,
             window.innerHeight - (window.innerHeight/10),
             window.innerHeight /20,
-            Math.floor(Math.random() * 8 + 3)
+            Math.floor(Math.random() * 6 + 3)
         );
 
     window.addEventListener("pointerdown", this.onDown.bind(this));
