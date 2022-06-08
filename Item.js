@@ -46,7 +46,7 @@ export class Item {
   }
 
   moveAnimate(moveX) {
-    this.transitionX += moveX * 0.8;
+    this.transitionX += moveX * 1.3;
     for (let i = 0; i < this.item.length; i++) {
       this.item[i].style.transform = `translateX(${this.transitionX}px)`;
    

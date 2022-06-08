@@ -1,7 +1,7 @@
 export class Ball {
     constructor(x, y, radius, speed,color) {
-        this.x = Math.floor(Math.random() * window.innerWidth/2) +x;
-        this.y = Math.floor(Math.random() * window.innerHeight/2) + y ;
+        this.x = Math.floor(Math.random() * window.innerWidth) +x;
+        this.y = Math.floor(Math.random() * window.innerHeight) + y ;
         this.direction = Math.floor(Math.random() * 2)+1;
 
         this.dx = (Math.random() * speed )- speed;
@@ -11,14 +11,16 @@ export class Ball {
         this.color = color;
         this.ballSize = 0.04;
         this.sizebackup = this.radius;
+		
+		this.transitonMoveX = 1;
 
     }
 
-    draw(ctx, stageWidth, stageHeight) {
-       
-
-        this.x += this.dx;
-        this.y += this.dy;
+    draw(ctx, stageWidth, stageHeight,moveX) {
+    
+		moveX *= this.transitonMoveX;
+        this.x += this.dx + moveX;
+        this.y += this.dy + moveX;
 
 
         if(this.radius > 3){
@@ -60,10 +62,12 @@ export class Ball {
         if (this.x < minX || this.x > maxX) {
             this.dx *= -1;
             this.x += this.dx;
+			this.transitonMoveX *= -1;
         } else if (this.y < minY || this.y > maxY) {
       
             this.dy *= -1;
             this.y += this.dy;
+			this.transitonMoveX *= -1;
         }
       
      }

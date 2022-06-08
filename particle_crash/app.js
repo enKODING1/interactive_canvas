@@ -1,4 +1,5 @@
 import { Ball } from './Ball.js';
+import {Polygon} from './polygon.js';
 
 class App {
     constructor() {
@@ -29,7 +30,17 @@ class App {
 		
 		this.pointerParticle = new Ball(0,0,20,2,'white');
 		
-		window.addEventListener('pointermove',this.onMove.bind(this));
+   this.polygon = new Polygon(
+            window.innerWidth / 2,
+            window.innerHeight - (window.innerHeight/10),
+            window.innerHeight / 20,
+            3
+        );
+		 this.pointerDown = false;
+        this.moveX = 0;
+		window.addEventListener('pointerdown', this.onDown.bind(this));
+        window.addEventListener('pointermove', this.onMove.bind(this));
+        window.addEventListener('pointerup', this.onUp.bind(this));
     }
     resize() {
         this.canvas.width = window.innerWidth * this.pixelRatio;
@@ -41,17 +52,37 @@ class App {
     animate() {
         this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         window.requestAnimationFrame(this.animate.bind(this))
+		    this.moveX *= 0.9;
+		   this.polygon.animate(this.ctx,this.moveX,window.innerWidth,window.innerHeight);
         this.connect();
     }
 
-	onMove(e){
-		 this.pointerParticle.moveMouse(e.x,e.y,this.ctx);
-		console.log(e);
-	}
+	
+    onDown(e) {
+        this.pointerDown = true;
+        this.moveX = 0;
+        this.offsetX = e.clientX;
+    }
+
+    onMove(e) {
+        if (this.pointerDown === true) {
+            e.preventDefault();
+ 
+           this.moveX = e.clientX - this.offsetX; //현재 마우스를 움직이는 첫 지점을 0으로 만드는 코드
+           this.offsetX = e.clientX;
+    
+        }
+    }
+
+    onUp(e) {
+        this.pointerDown = false;
+    
+    }
+
 	
     connect() {
         for (let i = 0; i < this.ball.length; i++) {
-            this.ball[i].draw(this.ctx, window.innerWidth, window.innerHeight);
+            this.ball[i].draw(this.ctx, window.innerWidth, window.innerHeight,this.moveX);
             for (let j = 0; j < this.ball.length; j++) {
                 let dx = this.ball[i].x - this.ball[j].x;
                 let dy = this.ball[i].y - this.ball[j].y;

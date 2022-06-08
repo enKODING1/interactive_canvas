@@ -1,5 +1,6 @@
 import { Item } from "./Item.js";
 import { Ball } from "./ball.js";
+import {Polygon} from './polygon.js';
 
 class App {
   constructor() {
@@ -50,6 +51,13 @@ class App {
     this.moveX = 0;
     this.backupX = 0;
     this.speed = 0;
+	  
+	     this.polygon = new Polygon(
+            window.innerWidth / 2,
+            window.innerHeight - (window.innerHeight/10),
+            window.innerHeight /20,
+            Math.floor(Math.random() * 8 + 3)
+        );
 
     window.addEventListener("pointerdown", this.onDown.bind(this));
 
@@ -64,8 +72,8 @@ class App {
     window.requestAnimationFrame(this.update.bind(this));
     this.moveX *= 0.9;
     this.item.moveAnimate(this.moveX);
-    
 
+	
     //canvas구간
     this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
     // for(let i =0 ; i <this.ball_count; i++){
@@ -86,6 +94,8 @@ class App {
             }
         }
     }
+	  
+	   this.polygon.animate(this.ctx,this.moveX,window.innerWidth,window.innerHeight);
   }
 
   onDown(e) {
