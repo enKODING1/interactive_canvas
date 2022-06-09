@@ -36,7 +36,7 @@ gravity
  https://user-images.githubusercontent.com/65354945/172161461-83f47df3-3b57-45b7-a8ef-864427c4c0c7.MOV
 
 
-particle crash
+particle crash  (updated  영상과 다를 수  )
 - [particle crash animation page] (https://enkoding.netlify.app/particle_crash)
 
  https://user-images.githubusercontent.com/65354945/172161795-a5339193-d987-4e70-8259-c125086069ef.MOV
