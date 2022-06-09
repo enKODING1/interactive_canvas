@@ -15,7 +15,7 @@ class App {
     this.ball = new Array();
     let x = 100; 
     let y = 100;
-    let radius = 6;
+    let radius = 3;
     let speed = 2;
     for(let i =0 ;i  <this.ball_count;i++){
       

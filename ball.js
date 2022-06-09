@@ -10,11 +10,22 @@ export class Ball{
         this.radius = Math.random()*radius + 2;
         this.speed = Math.random() * speed + 0.3;
         this.color = color;
+        this.ballSize = 0.02;
     }
 
     animate(ctx,stageWidth,stageHeight){
+
+        if(this.radius >= 3){
+            this.ballSize = -0.02;
+        }else if(this.radius <= 0.3)
+        {
+            this.ballSize = 0.02;
+        }
+        // console.log(this.radius);
         this.x += this.dx;
         this.y += this.dy;
+        console.log(this.radius);
+        this.radius += this.ballSize;
 
         ctx.fillStyle = this.color;
         ctx.beginPath();
