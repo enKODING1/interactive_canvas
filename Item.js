@@ -100,7 +100,7 @@ export class Item {
      
 
 
-     this.transitionX *= transitionCrash;
+    //  this.transitionX *= transitionCrash;
  
     //  this.test.innerText  = `${this.transitionX}  testTransition: ${this.testTransition}`;
    }
