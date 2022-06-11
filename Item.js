@@ -6,13 +6,16 @@ export class Item {
     this.parent = parent;
     this.count = 0;
     this.transitionX = 0;
-    this.transitionY = 100;
+
 
     this.ITEM_LIST = ITEM_LIST;
     this.block = 0;
 
     this.test = document.getElementById('test');
-    this.transitionCrash = 0.9;
+    
+    this.leftCheck = 0;
+    this.rightCheck = 0;
+    this.backup = 900;
   }
 
   //객체 생성
@@ -97,12 +100,24 @@ export class Item {
      ctx.beginPath();
      ctx.rect(0,220,this.block,10);
      ctx.fill();
+
+    if(this.leftCheck == 1){
+      this.transitionX *= 0.9;
+    }
+    
+    if(this.rightCheck == 1){
+      this.backup *= 0.9;
+      console.log(this.backup);
+    }
+
+    
      
+
 
 
     //  this.transitionX *= transitionCrash;
  
-    //  this.test.innerText  = `${this.transitionX}  testTransition: ${this.testTransition}`;
+     this.test.innerText  = `${this.transitionX} `;
    }
 
 

@@ -43,7 +43,7 @@ class App {
     };
 
     this.content = document.getElementById("content"); //부모요소
-
+ 
     this.item = new Item(this.content, ITEM_LIST);
     this.item.create();
     this.transitionCrash = 1;
@@ -106,6 +106,8 @@ class App {
     this.mouseDown = true;
     this.offsetX = e.clientX;
     this.moveX = 0;
+    
+    
   }
 
   onMove(e) {
@@ -120,9 +122,21 @@ class App {
 
   onUp(e) {
     this.mouseDown = false;
-    if(this.mouseDown == false){
-      this.transitionCrash = 0.9;
+    
+    if(this.item.transitionX >= 200){
+      this.item.leftCheck = 1;
+    }else if(this.item.transitionX <= 20){
+      this.item.leftCheck = 0;
+     
     }
+   
+    if(this.item.transitionX <= -(this.item.block-800)){
+      this.item.rightCheck = 1;
+    }else if(this.item.transitionX >= -(this.item.block-900)){
+      this.item.rightCheck = 0;
+    }
+
+
   }
 
   resize() {
