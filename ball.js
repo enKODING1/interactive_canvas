@@ -13,6 +13,7 @@ export class Ball{
         this.ballSize = 0.02;
     }
 
+    //공 객체의 움직임 
     animate(ctx,stageWidth,stageHeight){
 
         if(this.radius >= 3){
@@ -24,7 +25,7 @@ export class Ball{
         // console.log(this.radius);
         this.x += this.dx;
         this.y += this.dy;
-        console.log(this.radius);
+        // console.log(this.radius);
         this.radius += this.ballSize;
 
         ctx.fillStyle = this.color;
@@ -36,6 +37,7 @@ export class Ball{
 
     }
 
+    //충돌 감지
     crash(stageWidth,stageHeight){
         let minX = this.radius;
         let minY = this.radius;
