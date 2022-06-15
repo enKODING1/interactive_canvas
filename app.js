@@ -32,20 +32,21 @@ class App {
     //canvas 끝
 
     const ITEM_LIST = {
-      BALL: "./ball/index.html",
-      BALL_LINE: "./ball_line/index.html",
-      CRASH: "./crash/index.html",
-      GRAVITY: "./gravity/index.html",
-      PARTICLE: "./particle/index.html",
-      "PARTICLE CRASH": "./particle_crash/index.html",
-      "POLYGON\n(clone coding)": "./polygon/index.html",
-      TEST: "./test/index.html",
+      'BALL': './ball/index.html',
+      'BALL_LINE': './ball_line/index.html',
+      'CRASH': './crash/index.html',
+      'GRAVITY': './gravity/index.html',
+      'PARTICLE': './particle/index.html',
+      'PARTICLE CRASH': './particle_crash/index.html',
+      'POLYGON\n(clone coding)': './polygon/index.html',
+      'TEST': './test/index.html',
     };
 
     this.content = document.getElementById("content"); //부모요소
-
+ 
     this.item = new Item(this.content, ITEM_LIST);
     this.item.create();
+    this.transitionCrash = 1;
 
     this.mouseDown = false;
     this.moveX = 0;
@@ -68,40 +69,45 @@ class App {
     window.requestAnimationFrame(this.update.bind(this));
   }
 
+  //canvas 및 가속도의 변화를 업데이트 
   update() {
     window.requestAnimationFrame(this.update.bind(this));
-    this.moveX *= 0.9;
-    this.item.moveAnimate(this.moveX);
+    this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+    this.moveX *= 0.9;  //가속도
+    this.item.moveAnimate(this.moveX,this.ctx,this.transitionCrash);
 
 	
     //canvas구간
-    this.ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
-    // for(let i =0 ; i <this.ball_count; i++){
-    //     this.ball[i].animate(this.ctx,window.innerWidth,window.innerHeight);
-    // }
-    for(let i=0; i< this.ball.length; i++){
-        this.ball[i].animate(this.ctx,window.innerWidth,window.innerHeight);
-        for(let j =0 ;j <this.ball.length; j++){
-            let dx = (this.ball[i].x - this.ball[j].x);
-            let dy = (this.ball[i].y - this.ball[j].y);
-            let distance = Math.sqrt(dx*dx + dy*dy);
-            if(distance <100){
-                this.ctx.strokeStyle = this.ball[j].color;
-                this.ctx.lineWidth = 0.1;
-                this.ctx.moveTo(this.ball[i].x,this.ball[i].y);
-                this.ctx.lineTo(this.ball[j].x,this.ball[j].y);
-                this.ctx.stroke();
-            }
-        }
-    }
-	  
+ 
+    this.connect();
 	   this.polygon.animate(this.ctx,this.moveX,window.innerWidth,window.innerHeight);
+  }
+
+  //canvas 공의 선을 연결및 ball을 보여주는 함수
+  connect(){
+    for(let i=0; i< this.ball.length; i++){
+      this.ball[i].animate(this.ctx,window.innerWidth,window.innerHeight);
+      for(let j =0 ;j <this.ball.length; j++){
+          let dx = (this.ball[i].x - this.ball[j].x);
+          let dy = (this.ball[i].y - this.ball[j].y);
+          let distance = Math.sqrt(dx*dx + dy*dy);
+          if(distance <100){
+              this.ctx.strokeStyle = this.ball[j].color;
+              this.ctx.lineWidth = 0.1;
+              this.ctx.moveTo(this.ball[i].x,this.ball[i].y);
+              this.ctx.lineTo(this.ball[j].x,this.ball[j].y);
+              this.ctx.stroke();
+          }
+      }
+  }
   }
 
   onDown(e) {
     this.mouseDown = true;
     this.offsetX = e.clientX;
     this.moveX = 0;
+    
+    
   }
 
   onMove(e) {
@@ -116,6 +122,21 @@ class App {
 
   onUp(e) {
     this.mouseDown = false;
+    
+    if(this.item.transitionX >= 200){
+      this.item.leftCheck = 1;
+    }else if(this.item.transitionX <= 20){
+      this.item.leftCheck = 0;
+     
+    }
+   
+    if(this.item.transitionX <= -(this.item.block-800)){
+      this.item.rightCheck = 1;
+    }else if(this.item.transitionX >= -(this.item.block-900)){
+      this.item.rightCheck = 0;
+    }
+
+
   }
 
   resize() {
